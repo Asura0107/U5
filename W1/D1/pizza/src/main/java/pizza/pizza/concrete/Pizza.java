@@ -21,7 +21,7 @@ public class Pizza extends Listino {
     }
 
 
-    public String getsal() {
+    public String toString() {
         return  "Pizza "+ name+ "(pomodoro, mozzarella, salame "+toppings.stream().map(Topping::getName).collect(Collectors.joining(", "))+" )   "+ (calories+toppings.stream().mapToDouble(Topping::getCalories).sum())+"   "+ (price + toppings.stream().mapToDouble(Topping::getPrice).sum());
     }
 

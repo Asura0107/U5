@@ -2,8 +2,12 @@ package pizza.pizza;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import pizza.pizza.concrete.Drink;
 import pizza.pizza.concrete.Pizza;
 import pizza.pizza.concrete.Topping;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Configuration
 public class BeansConf {
@@ -63,4 +67,49 @@ public class BeansConf {
         salami.addToppings(tomato());
         return salami;
     }
+
+    @Bean
+    Drink getlemonade() {
+        return new Drink("Lemonade(0.33l)", 128, 1.29);
+    }
+
+    @Bean
+    Drink getwater() {
+        return new Drink("Water(0.5l)", 0, 1.29);
+    }
+
+    @Bean
+    Drink getwine() {
+        return new Drink("Lemonade(0.75l, 13%)", 607, 7.49);
+    }
+
+    @Bean
+    List<Pizza> listpizza() {
+        List<Pizza> pizzas = new ArrayList<>();
+        pizzas.add(gethawaiana());
+        pizzas.add(getsalami());
+        pizzas.add(getmargherita());
+        return pizzas;
+    }
+
+    @Bean
+    List<Topping> toppingList() {
+        List<Topping> toppings = new ArrayList<>();
+        toppings.add(cheese());
+        toppings.add(ham());
+        toppings.add(onions());
+        toppings.add(pineapple());
+        toppings.add(pep());
+        return toppings;
+    }
+
+    @Bean
+    List<Drink> drinkList() {
+        List<Drink> drinks = new ArrayList<>();
+        drinks.add(getwater());
+        drinks.add(getwine());
+        drinks.add(getlemonade());
+        return drinks;
+    }
+
 }
