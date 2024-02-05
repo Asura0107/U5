@@ -5,7 +5,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-
 public abstract class Listino {
     protected String name;
     protected double calories;
