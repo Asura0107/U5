@@ -1,8 +1,12 @@
 package pizza.pizza.concrete;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
-
+@Getter
+@Setter
 public class Menu {
     List<Pizza> pizzas=new ArrayList<>();
     List<Topping> toppings=new ArrayList<>();
@@ -24,6 +28,8 @@ public class Menu {
         drinks.stream().forEach(System.out::println);
 
     }
+
+
 
     public double getPrice() {
         double totalPrice = 0.0;

@@ -5,6 +5,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Component;
 import pizza.pizza.concrete.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,6 +17,9 @@ public class Myrunner implements CommandLineRunner {
         List<Pizza> p=(List<Pizza>) ctx.getBean("listpizza");
         List<Topping> t=(List<Topping>) ctx.getBean("toppingList");
         List<Drink> d=(List<Drink>) ctx.getBean("drinkList");
+        Pizza margherita=(Pizza)ctx.getBean("getmargherita") ;
+        Pizza hawaiana=(Pizza)ctx.getBean("gethawaiana") ;
+        Drink wine=(Drink)ctx.getBean("getwine") ;
         Menu menu=new Menu(p,t,d);
         menu.menu();
 
@@ -23,8 +27,14 @@ public class Myrunner implements CommandLineRunner {
         List<Tavolo> tavoliLiberi = tavoloList.stream().filter(tavolo -> tavolo.getStatusTavolo() == StatusTavolo.LIBERO).collect(Collectors.toList());
         System.out.println("Salve, i tavoli liberi al momento sono: "+ tavoliLiberi.stream().map(Tavolo::getNumtavolo).map(Object::toString).collect(Collectors.joining(", ")));
 
+        Tavolo tavolo1=(Tavolo)ctx.getBean("tavolo1") ;
         System.out.println("Cosa prendete?");
         System.out.println("una margherita, una hawaiana ed del vino, perfetto");
-        Ordine ordine=new Ordine(1, )
+        Ordine ordine=new Ordine(tavolo1);
+        ordine.addpizza(margherita);
+        ordine.addpizza(hawaiana);
+        ordine.adddrink(wine);
+        ordine.print();
+        ctx.close();
     }
 }
