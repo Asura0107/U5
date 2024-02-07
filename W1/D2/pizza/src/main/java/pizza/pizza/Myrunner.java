@@ -34,7 +34,7 @@ public class Myrunner implements CommandLineRunner {
         ordine.addordine(margherita);
         ordine.addordine(hawaiana);
         ordine.addordine(wine);
-        ordine.print();
+        System.out.println(ordine.total());
         ctx.close();
     }
 }

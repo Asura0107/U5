@@ -30,24 +30,4 @@ public class Menu {
     }
 
 
-
-    public double getPrice() {
-        double totalPrice = 0.0;
-
-        for (Pizza pizza : pizzas) {
-            totalPrice += pizza.getPrice();
-        }
-
-        for (Topping topping : toppings) {
-            totalPrice += topping.getPrice();
-        }
-
-        for (Drink drink : drinks) {
-            totalPrice += drink.getPrice();
-        }
-
-        return totalPrice;
-    }
-
-
 }

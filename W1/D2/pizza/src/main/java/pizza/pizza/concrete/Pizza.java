@@ -20,9 +20,16 @@ public class Pizza extends Listino {
         toppings.add(topping);
     }
 
+    public double calories(){
+        return calories+toppings.stream().mapToDouble(Topping::getCalories).sum();
+    }
+
+    public double price(){
+        return price + toppings.stream().mapToDouble(Topping::getPrice).sum();
+    }
 
     public String toString() {
-        return  "Pizza "+ name+ "(pomodoro, mozzarella, salame "+toppings.stream().map(Topping::getName).collect(Collectors.joining(", "))+" )   "+ (calories+toppings.stream().mapToDouble(Topping::getCalories).sum())+"   "+ (price + toppings.stream().mapToDouble(Topping::getPrice).sum());
+        return  "Pizza "+ name+ "(pomodoro, mozzarella, salame "+toppings.stream().map(Topping::getName).collect(Collectors.joining(", "))+" )   "+ calories()+"   "+ price() ;
     }
 
 }

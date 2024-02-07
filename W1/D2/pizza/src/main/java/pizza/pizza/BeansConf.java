@@ -1,13 +1,16 @@
 package pizza.pizza;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import pizza.pizza.concrete.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
+@PropertySource("application.properties")
 public class BeansConf {
     @Bean
     Topping cheese() {
@@ -140,6 +143,11 @@ public class BeansConf {
         tavoli.add(tavolo4());
         tavoli.add(tavolo5());
         return  tavoli;
+    }
+
+    @Bean
+     double getcoperto(@Value("${order.coperto}")double coperto){
+        return coperto;
     }
 
 
