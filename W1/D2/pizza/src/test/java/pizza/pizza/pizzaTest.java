@@ -43,6 +43,8 @@ public class pizzaTest {
         System.out.println(margherita.getPrice());
         System.out.println(tavol2.getPosti());
         System.out.println(ordine1.total());
+        assertEquals(19.490000000000002,ordine1.total());
+
 
     }
 
@@ -57,6 +59,8 @@ public class pizzaTest {
         hawaiana.addToppings(onions);
         System.out.println(onions.getCalories());
         System.out.println(hawaiana.calories());
+        assertEquals(1349.0,hawaiana.calories());
+
     }
 
     @Test
@@ -69,6 +73,7 @@ public class pizzaTest {
         System.out.println(onions.getPrice());
         System.out.println(pep.getPrice());
         System.out.println(margherita.price());
+        assertEquals(6.97,margherita.price());
     }
 
 //    @ParameterizedTest
