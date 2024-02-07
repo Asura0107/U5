@@ -31,9 +31,9 @@ public class Myrunner implements CommandLineRunner {
         System.out.println("Cosa prendete?");
         System.out.println("una margherita, una hawaiana ed del vino, perfetto");
         Ordine ordine=new Ordine(tavolo1);
-        ordine.addpizza(margherita);
-        ordine.addpizza(hawaiana);
-        ordine.adddrink(wine);
+        ordine.addordine(margherita);
+        ordine.addordine(hawaiana);
+        ordine.addordine(wine);
         ordine.print();
         ctx.close();
     }
