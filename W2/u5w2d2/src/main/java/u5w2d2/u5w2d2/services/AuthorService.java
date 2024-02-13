@@ -30,6 +30,7 @@ public class AuthorService {
     public UserPost save(UserPost userpost) {
         Random r = new Random();
         userpost.setId(r.nextInt(1, 1000));
+        userpost.setAvatar("https://ui-avatars.com/api/?name="+ userpost.getNome() + "+" + userpost.getCognome());
         this.userPosts.add(userpost);
         return userpost;
     }

@@ -8,6 +8,7 @@ import java.time.LocalDate;
 @ToString
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class UserPost {
     private long id;
     private String nome;
@@ -16,11 +17,5 @@ public class UserPost {
     private String dataDiNascita;
     private String avatar;
 
-    public UserPost(String nome, String cognome, String email, String dataDiNascita) {
-        this.nome = nome;
-        this.cognome = cognome;
-        this.email = email;
-        this.dataDiNascita = dataDiNascita;
-        this.avatar = "https://ui-avatars.com/api/?name="+this.nome+"+"+this.cognome;
-    }
+
 }
