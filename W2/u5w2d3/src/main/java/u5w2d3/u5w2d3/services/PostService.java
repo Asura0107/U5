@@ -14,7 +14,6 @@ import u5w2d3.u5w2d3.exception.BadRequestException;
 import u5w2d3.u5w2d3.exception.NotFoundException;
 
 
-
 @Service
 public class PostService {
     @Autowired
@@ -31,11 +30,11 @@ public class PostService {
         return this.postDAO.findById(id).orElseThrow(() -> new NotFoundException(id));
     }
 
-    public BlogPost save(BlogPost newpost) {
-        postDAO.findByTitolo(newpost.getTitolo()).ifPresent(post -> {
-            throw new BadRequestException("Il titolo " + newpost.getTitolo() + " è già in uso!");
-        });
-        return postDAO.save(newpost);
+    public BlogPost save(PostPayload newpost) {
+        UserPost user = authorService.findById(newpost.getUserid());
+        return postDAO.save(
+                new BlogPost(newpost.getCategoria(), newpost.getTitolo(), newpost.getCover(), newpost.getContenuto(), newpost.getTempoDiLettura(), user)
+        );
     }
 
     public BlogPost findAndUpadate(long id, BlogPost update) {
@@ -51,10 +50,6 @@ public class PostService {
     public void findAndDelete(long id) {
         BlogPost found = this.findById(id);
         postDAO.delete(found);
-//        postDAO.deleteById(id);
     }
 
-    public PostPayload userPaylod(BlogPost user){
-        return  new PostPayload(user.getUser().getId());
-    }
 }

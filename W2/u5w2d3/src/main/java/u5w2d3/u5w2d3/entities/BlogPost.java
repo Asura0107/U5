@@ -6,7 +6,6 @@ import lombok.*;
 @Getter
 @ToString
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class BlogPost {
@@ -21,4 +20,13 @@ public class BlogPost {
     @ManyToOne
     @JoinColumn(name="user_id")
     private UserPost user;
+
+    public BlogPost(String categoria, String titolo, String cover, String contenuto, int tempoDiLettura, UserPost user) {
+        this.categoria = categoria;
+        this.titolo = titolo;
+        this.cover = cover;
+        this.contenuto = contenuto;
+        this.tempoDiLettura = tempoDiLettura;
+        this.user = user;
+    }
 }
