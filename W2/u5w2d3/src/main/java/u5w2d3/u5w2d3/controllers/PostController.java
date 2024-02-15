@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import u5w2d3.u5w2d3.entities.BlogPost;
@@ -33,7 +34,7 @@ public class PostController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public BlogPost sevePost(@RequestBody PostPayload postPaylod, BindingResult validation) {
+    public BlogPost sevePost(@RequestBody @Validated PostPayload postPaylod, BindingResult validation) {
         if (validation.hasErrors()){
             throw  new BadRequestException(validation.getAllErrors());
         }
@@ -41,7 +42,7 @@ public class PostController {
     }
 
     @PutMapping("/{id}")
-    public BlogPost findAndUpdate(@PathVariable long id, @RequestBody BlogPost blogPost,BindingResult validation){
+    public BlogPost findAndUpdate(@PathVariable long id, @RequestBody @Validated BlogPost blogPost,BindingResult validation){
         if (validation.hasErrors()){
             throw new BadRequestException(validation.getAllErrors());
         }
