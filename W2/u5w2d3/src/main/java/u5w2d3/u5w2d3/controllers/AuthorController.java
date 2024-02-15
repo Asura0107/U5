@@ -3,7 +3,9 @@ package u5w2d3.u5w2d3.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import u5w2d3.u5w2d3.exception.BadRequestException;
 import u5w2d3.u5w2d3.services.AuthorService;
 import u5w2d3.u5w2d3.entities.UserPost;
 
@@ -29,12 +31,18 @@ public class AuthorController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public UserPost seveUser(@RequestBody UserPost UserPost) {
+    public UserPost seveUser(@RequestBody UserPost UserPost, BindingResult validation) {
+        if (validation.hasErrors()){
+            throw new BadRequestException(validation.getAllErrors());
+        }
         return authorService.save(UserPost);
     }
 
     @PutMapping("/{id}")
-    public UserPost findAndUpdate(@PathVariable long id, @RequestBody UserPost UserPost) {
+    public UserPost findAndUpdate(@PathVariable long id, @RequestBody UserPost UserPost, BindingResult validation) {
+        if (validation.hasErrors()){
+            throw new BadRequestException(validation.getAllErrors());
+        }
         return authorService.findAndUpadate(id, UserPost);
     }
 
