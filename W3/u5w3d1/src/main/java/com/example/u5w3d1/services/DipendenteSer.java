@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 ;
@@ -29,6 +30,7 @@ public class DipendenteSer {
     @Autowired
     private DispositivoSer dispositivoSer;
 
+
     public Page<Dipendente> getDipendenti(int pageNumber, int size, String orderBy) {
         Pageable page = PageRequest.of(pageNumber, size, Sort.by(orderBy));
         return dipendenteDAO.findAll(page);
@@ -38,18 +40,7 @@ public class DipendenteSer {
         return dipendenteDAO.findById(id).orElseThrow(() -> new NotFoundException(id));
     }
 
-    public Dipendente save(DipendenteDTO newuser) {
-        dipendenteDAO.findByEmail(newuser.email()).ifPresent(u->{
-            throw new BadRequestException("l'email "+ u.getEmail()+" è già esistente");
-        });
-        Dispositivo dispositivo=dispositivoSer.findById(newuser.dispositivo());
-        if (dispositivo.getDisponibileDisp()== DisponibileDisp.DISMESSO||dispositivo.getDisponibileDisp()==DisponibileDisp.IN_MANUNTENZIONE){
-            dispositivo=null;
-        }
-        return dipendenteDAO.save(
-                new Dipendente(newuser.avatar(),newuser.username(),newuser.name(),newuser.surname(),newuser.email(), dispositivo, newuser.password())
-        );
-    }
+
     public Dipendente findByEmail(String email) {
         return dipendenteDAO.findByEmail(email).orElseThrow(() -> new NotFoundException("Email " + email + " non trovata"));
     }

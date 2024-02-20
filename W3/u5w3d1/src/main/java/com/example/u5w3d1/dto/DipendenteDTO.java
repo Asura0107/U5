@@ -4,6 +4,8 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
+import java.util.UUID;
+
 public record DipendenteDTO(
         @NotEmpty(message = "l'avatar è obbligatorio")
         String avatar,

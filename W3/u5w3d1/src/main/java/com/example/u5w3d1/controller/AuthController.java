@@ -28,7 +28,6 @@ public class AuthController {
     @ResponseStatus(HttpStatus.CREATED) // Status Code 201
     public Dipendente saveUser(@RequestBody DipendenteDTO newUser) {
 
-        // Se non ci sono errori salvo lo user
-        return this.usersService.save(newUser);
+        return this.authService.save(newUser);
     }
 }
